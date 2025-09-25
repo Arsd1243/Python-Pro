@@ -1,0 +1,20 @@
+print("Hola, bienvenido al diccionario bilingue")
+print("Preguntale sobre tus dudas sobre el idioma inglés, y te devolverá su significado")
+print("ADVERTENCIA: No posee todas las palabras del ingles, solo algunas y su significado, por favor, esperar a nueva actualización")
+meme_dict = {
+            "CRINGE": "Algo excepcionalmente raro o embarazoso",
+            "LOL": "Una respuesta común a algo gracioso",
+            "ROFL": "una respuesta a una broma",
+            "SHEESH" : "ligera desaprobación",
+            "CREEPY" : "aterrador, siniestro",
+            "AGGRO" : "ponerse agresivo/enojado"
+            }
+for i in range(5):
+    word = input("Escribe una palabra que no entiendas (¡con mayúsculas!): ")
+    
+    if word in meme_dict.keys():
+        # ¿Qué debemos hacer si se encuentra la palabra?
+        print( word, "significa", meme_dict[word])
+    else:
+        # ¿Qué hacer si no se encuentra la palabra?
+        print("Esa palabra no está incluida en el diccionario.")
