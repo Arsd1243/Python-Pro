@@ -1,0 +1,37 @@
+import discord
+from discord.ext import commands
+import os
+# Reemplaza 'TU_TOKEN_AQUI' con tu token real (o usa os.getenv('DISCORD_TOKEN') si lo guardas en .env)
+TOKEN = 'TU_TOKEN_AQUI'
+# Palabras clave que activan la respuesta
+KEYWORDS = ['residuos', 'basura', 'disminuir', 'reducir', 'waste', 'reciclar', 'compost', 'ecologico', 'sostenible']
+# Tips para reducir residuos
+TIPS = [
+    "1. Usa bolsas reutilizables en lugar de plásticas desechables para tus compras.",
+    "2. Compra productos a granel (sin empaques individuales) en mercados locales.",
+    "3. Recicla correctamente: separa papel, plástico, vidrio y metal en contenedores adecuados.",
+    "4. Composta residuos orgánicos como restos de comida para crear abono natural y reducir basura."
+]
+# Configura el bot con un prefijo (opcional, pero útil para comandos)
+bot = commands.Bot(command_prefix='!', intents=discord.Intents.all())
+# Configura el bot con un prefijo (opcional, pero útil para comandos)
+bot = commands.Bot(command_prefix='!', intents=discord.Intents.all())
+@bot.event
+async def on_ready():
+    print(f'Bot conectado como {bot.user}')
+@bot.event
+async def on_message(message):
+    # Ignora mensajes del propio bot
+    if message.author == bot.user:
+        return
+    
+    # Convierte el mensaje a minúsculas para comparación
+    content = message.content.lower()
+    
+    # Si el mensaje contiene alguna palabra clave, responde con tips
+    if any(keyword in content for keyword in KEYWORDS):
+        response = "**¡Hola! Aquí van algunos tips para disminuir residuos y basura:**\n" + "\n".join(TIPS)
+        await message.channel.send(response)
+
+# Ejecuta el bot
+bot.run(TOKEN)
